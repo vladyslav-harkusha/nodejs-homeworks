@@ -24,9 +24,7 @@ const start = async () => {
 			if (line.endsWith('@gmail.com')) {
 				await fs.appendFile(gmailEmailsFile, `${gmailNumber}: ${email}\n`);
 				gmailNumber++;
-			}
-
-			if (line.endsWith('@ukr.net')) {
+			} else if (line.endsWith('@ukr.net')) {
 				await fs.appendFile(ukrnetEmailsFile, `${ukrnetNumber}: ${email}\n`);
 				ukrnetNumber++;
 			}
