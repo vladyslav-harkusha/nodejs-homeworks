@@ -1,3 +1,4 @@
 /.idea
 node_homeworks.iml
 /.dist
+/node_modules
