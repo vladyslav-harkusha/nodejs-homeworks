@@ -8,6 +8,10 @@ class UserService {
 	async create(user) {
 		return await userRepository.create(user);
 	}
+
+	async getById(id) {
+		return await userRepository.getById(id);
+	}
 }
 
 const userService = new UserService();

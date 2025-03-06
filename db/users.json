@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Anasteysha",
+        "surname": "Pochechun",
+        "age": 19
+    },
+    {
+        "id": 2,
+        "name": "Eduard",
+        "surname": "Talala",
+        "age": 42
+    },
+    {
+        "id": 3,
+        "name": "Tolik",
+        "surname": "Alcoholic",
+        "age": 27
+    },
+    {
+        "id": 4,
+        "name": "Viktor",
+        "surname": "Yakubovich",
+        "age": 69
+    }
+]

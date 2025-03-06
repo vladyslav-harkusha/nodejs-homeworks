@@ -19,6 +19,12 @@ class UserRepository {
 
 		return newUser;
 	}
+
+	async getById(id) {
+		const users = await read();
+		const foundUser = users.find(user => user.id === Number(id));
+		return foundUser;
+	}
 }
 
 const userRepository = new UserRepository();
