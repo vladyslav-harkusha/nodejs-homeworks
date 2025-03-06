@@ -7,7 +7,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/users', async (req, res) => {
-	const data = await userService.getAll();
+	const searchParams = req.query;
+
+	let data;
+	if (Object.keys(searchParams).length) {
+		data = await userService.filterByQueryParams(searchParams);
+	} else {
+		data = await userService.getAll();
+	}
+
 	res.json(data);
 });
 
@@ -45,6 +53,7 @@ app.delete('/users/:userId', async (req, res) => {
 
 	res.json(data);
 });
+
 
 app.listen(5000, () => {
 	console.log('server is running on port 5000');

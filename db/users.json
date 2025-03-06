@@ -25,8 +25,14 @@
     },
     {
         "id": 5,
-        "name": "lalaal",
-        "surname": "laladdee",
+        "name": "Viktor",
+        "surname": "Duplicated",
         "age": 12
+    },
+    {
+        "id": 6,
+        "name": "Annuta",
+        "surname": "Alba",
+        "age": 42
     }
 ]

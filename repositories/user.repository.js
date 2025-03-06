@@ -27,14 +27,13 @@ class UserRepository {
 		return foundUser;
 	}
 
-	async updateById(id, updatedUser ) {
+	async updateById(id, newUserData ) {
 		const users = await read();
 		const foundIndex = users.findIndex(user => user.id === Number(id));
-
-		users[foundIndex] = updatedUser;
+		users[foundIndex] = {id: users[foundIndex].id, ...newUserData};
 		await write(users);
 
-		return updatedUser;
+		return users[foundIndex];
 	}
 
 	async updatePartialById(id, newFields ) {
@@ -59,6 +58,14 @@ class UserRepository {
 		}
 
 		return deletedUser;
+	}
+
+	async filterByQueryParams(filterParams) {
+		const [[paramKey, paramValue]] = Object.entries(filterParams);
+		const users = await read();
+		const filteredUsers = users.filter(user => user[paramKey] === paramValue);
+
+		return filteredUsers;
 	}
 }
 

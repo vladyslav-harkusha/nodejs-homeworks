@@ -24,6 +24,10 @@ class UserService {
 	async deleteById(id) {
 		return await userRepository.deleteById(id);
 	}
+
+	async filterByQueryParams(filterParams) {
+		return await userRepository.filterByQueryParams(filterParams);
+	}
 }
 
 const userService = new UserService();
