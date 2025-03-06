@@ -23,6 +23,29 @@ app.post('/users', async (req, res) => {
 	res.json(data);
 });
 
+app.put('/users/:userId', async (req, res) => {
+	const { userId } = req.params;
+	const updatedUser = req.body;
+	const data = await userService.updateById(userId, updatedUser);
+
+	res.json(data);
+});
+
+app.patch('/users/:userId', async (req, res) => {
+	const { userId } = req.params;
+	const fieldsToUpdate = req.body;
+	const data = await userService.updatePartialById(userId, fieldsToUpdate);
+
+	res.json(data);
+});
+
+app.delete('/users/:userId', async (req, res) => {
+	const { userId } = req.params;
+	const data = await userService.deleteById(userId);
+
+	res.json(data);
+});
+
 app.listen(5000, () => {
 	console.log('server is running on port 5000');
 });
