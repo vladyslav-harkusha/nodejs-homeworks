@@ -1,0 +1,19 @@
+{
+  "name": "node_homeworks",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladyslav-harkusha/nodejs-homeworks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vladyslav-harkusha/nodejs-homeworks/issues"
+  },
+  "homepage": "https://github.com/vladyslav-harkusha/nodejs-homeworks#readme",
+  "description": ""
+}
