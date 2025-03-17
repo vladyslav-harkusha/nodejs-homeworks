@@ -1,5 +1,5 @@
 /.idea
 node_homeworks.iml
-/.dist
+/dist
 /node_modules
 .env
