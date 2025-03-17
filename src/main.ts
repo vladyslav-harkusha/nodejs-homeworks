@@ -1,29 +1,13 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import mongoose from "mongoose";
-import {userService} from "./services/user.service";
-import {IUserDTO} from "./interfaces/user.interface";
 import {config} from "./configs/config";
+import {apiRouter} from "./routers/api.router";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/users', async (req: Request, res: Response) => {
-    const data = await userService.getAll();
-    res.json(data);
-});
-
-app.post('/users', async (req: Request, res: Response) => {
-    const newUser = req.body as IUserDTO;
-    const data = await userService.create(newUser);
-    res.json(data);
-});
-
-app.get('/users/:id', async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const data = await userService.getById(id);
-    res.json(data);
-});
+app.use('/', apiRouter);
 
 const dbConnection = async () => {
     let dbCon = false;
