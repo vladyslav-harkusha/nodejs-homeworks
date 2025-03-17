@@ -20,6 +20,19 @@ class UserController {
         const data = await userService.getById(id);
         res.status(StatusCodesEnum.OK).json(data);
     }
+
+    public async updateById(req: Request, res: Response) {
+        const { id } = req.params;
+        const newUser = req.body as IUserDTO;
+        const data = await userService.updateById(id, newUser);
+        res.status(StatusCodesEnum.OK).json(data);
+    }
+
+    public async deleteById(req: Request, res: Response) {
+        const { id } = req.params;
+        await userService.deleteById(id);
+        res.status(StatusCodesEnum.NO_CONTENT).end();
+    }
 }
 
 export const userController = new UserController();
