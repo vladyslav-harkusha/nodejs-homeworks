@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-redeclare */
 import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import { config } from "./configs/config";
