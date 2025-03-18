@@ -1,26 +1,28 @@
-import express from 'express';
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import express from "express";
 import mongoose from "mongoose";
-import {config} from "./configs/config";
-import {apiRouter} from "./routers/api.router";
+import { config } from "./configs/config";
+import { apiRouter } from "./routers/api.router";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', apiRouter);
+app.use("/", apiRouter);
 
 const dbConnection = async () => {
     let dbCon = false;
 
     while (!dbCon) {
         try {
-            console.log('Connecting to DB...');
+            console.log("Connecting to DB...");
             await mongoose.connect(config.MONGO_URI);
             dbCon = true;
-            console.log('Database available!!!')
+            console.log("Database available!!!");
         } catch (e) {
-            console.log('Database unavaliable, wait 3 seconds');
-            await new Promise(resolve => setTimeout(resolve, 3000))
+            console.log("Database unavaliable, wait 3 seconds");
+            await new Promise((resolve) => setTimeout(resolve, 3000));
         }
     }
 };
