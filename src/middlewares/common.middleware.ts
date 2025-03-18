@@ -1,8 +1,8 @@
-// eslint-disable-next-line no-redeclare
 import { NextFunction, Request, Response } from "express";
-import { isObjectIdOrHexString } from "mongoose";
-import { ApiError } from "../errors/api.error";
 import { ObjectSchema } from "joi";
+import { isObjectIdOrHexString } from "mongoose";
+
+import { ApiError } from "../errors/api.error";
 
 class CommonMiddleware {
     public isIdValid(key: string) {
