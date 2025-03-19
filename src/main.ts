@@ -1,10 +1,12 @@
 /* eslint-disable no-console */
-/* eslint-disable no-redeclare */
-import express, { Request, Response, NextFunction } from "express";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+import express, { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
+
 import { config } from "./configs/config";
-import { apiRouter } from "./routers/api.router";
 import { ApiError } from "./errors/api.error";
+import { apiRouter } from "./routers/api.router";
 
 const app = express();
 app.use(express.json());
