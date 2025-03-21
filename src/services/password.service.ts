@@ -5,10 +5,7 @@ class PasswordService {
         return bcrypt.hash(password, 10);
     }
 
-    public comparePassword(
-        password: string,
-        hashedPassword: string,
-    ): Promise<boolean> {
+    public comparePassword(password: string, hashedPassword: string): Promise<boolean> {
         return bcrypt.compare(password, hashedPassword);
     }
 }

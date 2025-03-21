@@ -1,8 +1,4 @@
-import {
-    IUser,
-    IUserCreateDTO,
-    IUserUpdateDTO,
-} from "../interfaces/user.interface";
+import { IUser, IUserCreateDTO, IUserUpdateDTO } from "../interfaces/user.interface";
 import { User } from "../models/user.model";
 
 class UserRepository {

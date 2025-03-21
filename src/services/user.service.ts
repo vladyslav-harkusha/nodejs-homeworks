@@ -1,10 +1,6 @@
 import { StatusCodesEnum } from "../enums/status-codes.enum";
 import { ApiError } from "../errors/api.error";
-import {
-    IUser,
-    IUserCreateDTO,
-    IUserUpdateDTO,
-} from "../interfaces/user.interface";
+import { IUser, IUserCreateDTO, IUserUpdateDTO } from "../interfaces/user.interface";
 import { userRepository } from "../repositories/user.repository";
 
 class UserService {
@@ -26,10 +22,7 @@ class UserService {
         return user;
     }
 
-    public async updateById(
-        userId: string,
-        updateData: IUserUpdateDTO,
-    ): Promise<IUser> {
+    public async updateById(userId: string, updateData: IUserUpdateDTO): Promise<IUser> {
         const user = await userRepository.getById(userId);
 
         if (!user) {
@@ -53,10 +46,7 @@ class UserService {
         const user = await userRepository.getByEmail(email);
 
         if (user) {
-            throw new ApiError(
-                "User is already exists",
-                StatusCodesEnum.BAD_REQUEST,
-            );
+            throw new ApiError("User is already exists", StatusCodesEnum.BAD_REQUEST);
         }
     }
 }

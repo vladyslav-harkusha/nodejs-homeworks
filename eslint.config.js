@@ -37,6 +37,7 @@ export default [
 			...tsPlugin.configs.recommended.rules,
 			...prettierPlugin.configs.recommended.rules,
 
+			"max-len": ["error", { "code": 100, "ignoreUrls": true, "ignoreStrings": true, "ignoreTemplateLiterals": true }],
 			"simple-import-sort/imports": "error",
 			"simple-import-sort/exports": "error",
 			"@typescript-eslint/interface-name-prefix": "off",

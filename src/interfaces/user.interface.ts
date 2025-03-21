@@ -13,11 +13,7 @@ interface IUser extends IBase {
     isVerified: boolean;
 }
 
-type IUserCreateDTO = Pick<
-    IUser,
-    "email" | "password" | "name" | "surname" | "age"
->;
-
+type IUserCreateDTO = Pick<IUser, "email" | "password" | "name" | "surname" | "age">;
 type IUserUpdateDTO = Pick<IUser, "name" | "surname" | "age">; // data transfer object
 type IUserSignInDTO = Pick<IUser, "email" | "password">;
 

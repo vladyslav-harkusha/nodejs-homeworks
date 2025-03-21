@@ -1,19 +1,13 @@
 import { Request, Response } from "express";
 
 import { StatusCodesEnum } from "../enums/status-codes.enum";
-import { IUserCreateDTO, IUserUpdateDTO } from "../interfaces/user.interface";
+import { IUserUpdateDTO } from "../interfaces/user.interface";
 import { userService } from "../services/user.service";
 
 class UserController {
     public async getAll(req: Request, res: Response) {
         const data = await userService.getAll();
         res.status(StatusCodesEnum.OK).json(data);
-    }
-
-    public async create(req: Request, res: Response) {
-        const newUser = req.body as IUserCreateDTO;
-        const data = await userService.create(newUser);
-        res.status(StatusCodesEnum.CREATED).json(data);
     }
 
     public async getById(req: Request, res: Response) {
