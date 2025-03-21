@@ -15,5 +15,6 @@ interface ITokenPayload {
 
 type ITokenPair = Pick<IToken, "accessToken" | "refreshToken">;
 type ITokenDTO = Pick<IToken, "accessToken" | "refreshToken" | "_userId">;
+type IRefresh = Pick<IToken, "refreshToken">;
 
-export { IToken, ITokenDTO, ITokenPair, ITokenPayload };
+export { IRefresh, IToken, ITokenDTO, ITokenPair, ITokenPayload };
