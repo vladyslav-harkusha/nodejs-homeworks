@@ -1,3 +1,4 @@
+import { RoleEnum } from "../enums/role.enum";
 import { StatusCodesEnum } from "../enums/status-codes.enum";
 import { ApiError } from "../errors/api.error";
 import { IUser, IUserUpdateDTO } from "../interfaces/user.interface";
@@ -44,6 +45,22 @@ class UserService {
         if (user) {
             throw new ApiError("User is already exists", StatusCodesEnum.BAD_REQUEST);
         }
+    }
+
+    public async changeIsActive(userId: string, loggedInUserRole: RoleEnum): Promise<IUser> {
+        if (loggedInUserRole !== "admin") {
+            throw new ApiError("You do not have permission to do this", StatusCodesEnum.FORBIDDEN);
+        }
+
+        const user = await userRepository.getById(userId);
+
+        if (!user) {
+            throw new ApiError("User not found", StatusCodesEnum.NOT_FOUND);
+        }
+
+        const changedIsActive = !user.isActive;
+
+        return await userRepository.changeIsActive(userId, changedIsActive);
     }
 }
 

@@ -20,6 +20,9 @@ class UserRepository {
     public getByEmail(email: string): Promise<IUser> {
         return User.findOne({ email });
     }
+    public changeIsActive(userId: string, isActive: boolean): Promise<IUser> {
+        return User.findByIdAndUpdate(userId, { isActive }, { new: true });
+    }
 }
 
 export const userRepository = new UserRepository();

@@ -23,4 +23,6 @@ router.delete(
     userController.deleteById,
 );
 
+router.patch("/is-active/:id", authMiddleware.checkAccessToken, userController.changeIsActive);
+
 export const userRouter = router;

@@ -44,6 +44,17 @@ class UserController {
             next(e);
         }
     }
+
+    public async changeIsActive(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { id } = req.params;
+            const loggedInUserRole = req.res.locals.tokenPayload.role;
+            const data = await userService.changeIsActive(id, loggedInUserRole);
+            res.status(StatusCodesEnum.OK).json(data);
+        } catch (e) {
+            next(e);
+        }
+    }
 }
 
 export const userController = new UserController();

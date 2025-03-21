@@ -11,6 +11,7 @@ interface IUser extends IBase {
     age: number;
     isDeleted: boolean;
     isVerified: boolean;
+    isActive: boolean;
 }
 
 type IUserCreateDTO = Pick<IUser, "email" | "password" | "name" | "surname" | "age">;
