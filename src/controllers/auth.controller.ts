@@ -45,9 +45,11 @@ class AuthController {
 
     public async refresh(req: Request, res: Response, next: NextFunction) {
         try {
-            const payload = req.res.locals.tokenPayload as ITokenPayload;
-            const newTokens = tokenService.generateTokens(payload);
-            await tokenRepository.create({ ...newTokens, _userId: payload.userId });
+            const { userId, role } = req.res.locals.tokenPayload as ITokenPayload;
+            const newTokens = tokenService.generateTokens({ userId, role });
+            await tokenRepository.create({ ...newTokens, _userId: userId });
+
+            res.status(StatusCodesEnum.OK).json(newTokens);
         } catch (e) {
             next(e);
         }

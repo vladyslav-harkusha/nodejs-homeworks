@@ -18,7 +18,7 @@ class AuthMiddleware {
                 throw new ApiError("No access token provided", StatusCodesEnum.UNAUTHORIZED);
             }
 
-            const isTokenExist = await tokenService.isTokenExists(accessToken);
+            const isTokenExist = await tokenService.isTokenExists(accessToken, "accessToken");
             if (!isTokenExist) {
                 throw new ApiError("Invalid access token", StatusCodesEnum.UNAUTHORIZED);
             }
@@ -39,8 +39,9 @@ class AuthMiddleware {
                 throw new ApiError("No refresh token provided", StatusCodesEnum.FORBIDDEN);
             }
 
-            const isTokenExist = await tokenService.isTokenExists(refreshToken);
+            const isTokenExist = await tokenService.isTokenExists(refreshToken, "refreshToken");
             if (!isTokenExist) {
+                console.log(refreshToken);
                 throw new ApiError("Invalid refresh token", StatusCodesEnum.FORBIDDEN);
             }
 
