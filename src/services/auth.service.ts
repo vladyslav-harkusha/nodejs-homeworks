@@ -4,6 +4,7 @@ import { ITokenPair } from "../interfaces/token.interface";
 import { IUser, IUserCreateDTO, IUserSignInDTO } from "../interfaces/user.interface";
 import { tokenRepository } from "../repositories/token.repository";
 import { userRepository } from "../repositories/user.repository";
+import { emailService } from "./email.service";
 import { passwordService } from "./password.service";
 import { tokenService } from "./token.service";
 import { userService } from "./user.service";
@@ -19,6 +20,7 @@ class AuthService {
             role: newUser.role,
         });
         await tokenRepository.create({ ...tokens, _userId: newUser._id });
+        await emailService.sendEmail();
 
         return { user: newUser, tokens };
     }
