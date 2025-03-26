@@ -35,6 +35,10 @@ class AuthService {
             throw new ApiError("Invalid email or password", StatusCodesEnum.UNAUTHORIZED);
         }
 
+        if (!user.isActive) {
+            throw new ApiError("Account is not active", StatusCodesEnum.FORBIDDEN);
+        }
+
         const tokens = tokenService.generateTokens({
             userId: user._id,
             role: user.role,
