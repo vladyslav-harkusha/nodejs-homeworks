@@ -1,4 +1,5 @@
-import { templatesConstants } from "../constants/templates.constants";
+import { emailConstants } from "../constants/email.constants";
+import { EmailEnum } from "../enums/email.enum";
 import { StatusCodesEnum } from "../enums/status-codes.enum";
 import { ApiError } from "../errors/api.error";
 import { ITokenPair } from "../interfaces/token.interface";
@@ -21,12 +22,10 @@ class AuthService {
             role: newUser.role,
         });
         await tokenRepository.create({ ...tokens, _userId: newUser._id });
-        await emailService.sendEmail(
-            newUser.email,
-            `Welcome, ${newUser.name}`,
-            templatesConstants.WELCOME,
-            { name: newUser.name },
-        );
+
+        await emailService.sendEmail(newUser.email, emailConstants[EmailEnum.WELCOME], {
+            name: newUser.name,
+        });
 
         return { user: newUser, tokens };
     }
