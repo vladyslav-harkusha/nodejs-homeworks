@@ -1,4 +1,6 @@
+import { config } from "../configs/config";
 import { emailConstants } from "../constants/email.constants";
+import { ActionTokenTypeEnum } from "../enums/action-token-type-enum";
 import { EmailEnum } from "../enums/email.enum";
 import { StatusCodesEnum } from "../enums/status-codes.enum";
 import { ApiError } from "../errors/api.error";
@@ -23,8 +25,13 @@ class AuthService {
         });
         await tokenRepository.create({ ...tokens, _userId: newUser._id });
 
-        await emailService.sendEmail(newUser.email, emailConstants[EmailEnum.WELCOME], {
+        const token = tokenService.generateActionToken(
+            { userId: newUser._id, role: newUser.role },
+            ActionTokenTypeEnum.ACTIVATE,
+        );
+        await emailService.sendEmail(newUser.email, emailConstants[EmailEnum.ACTIVATE], {
             name: newUser.name,
+            url: `${config.FRONTEND_URL}/activate/${token}`,
         });
 
         return { user: newUser, tokens };

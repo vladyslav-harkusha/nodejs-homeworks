@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 import { RoleEnum } from "../enums/role.enum";
 import { StatusCodesEnum } from "../enums/status-codes.enum";
+import { TokenTypeEnum } from "../enums/token-type.enum";
 import { ApiError } from "../errors/api.error";
 import { IRefresh, ITokenPayload } from "../interfaces/token.interface";
 import { tokenService } from "../services/token.service";
@@ -20,12 +21,15 @@ class AuthMiddleware {
                 throw new ApiError("No access token provided", StatusCodesEnum.UNAUTHORIZED);
             }
 
-            const isTokenExist = await tokenService.isTokenExists(accessToken, "accessToken");
+            const isTokenExist = await tokenService.isTokenExists(
+                accessToken,
+                TokenTypeEnum.ACCESS,
+            );
             if (!isTokenExist) {
                 throw new ApiError("Invalid access token", StatusCodesEnum.UNAUTHORIZED);
             }
 
-            const tokenPayload = tokenService.verifyToken(accessToken, "access");
+            const tokenPayload = tokenService.verifyToken(accessToken, TokenTypeEnum.ACCESS);
 
             const isActive = await userService.isActive(tokenPayload.userId);
             if (!isActive) {
@@ -47,12 +51,15 @@ class AuthMiddleware {
                 throw new ApiError("No refresh token provided", StatusCodesEnum.FORBIDDEN);
             }
 
-            const isTokenExist = await tokenService.isTokenExists(refreshToken, "refreshToken");
+            const isTokenExist = await tokenService.isTokenExists(
+                refreshToken,
+                TokenTypeEnum.REFRESH,
+            );
             if (!isTokenExist) {
                 throw new ApiError("Invalid refresh token", StatusCodesEnum.FORBIDDEN);
             }
 
-            const tokenPayload = tokenService.verifyToken(refreshToken, "refresh");
+            const tokenPayload = tokenService.verifyToken(refreshToken, TokenTypeEnum.REFRESH);
             req.res.locals.tokenPayload = tokenPayload; // temporary vars
 
             next();
