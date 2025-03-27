@@ -1,6 +1,6 @@
 import { StatusCodesEnum } from "../enums/status-codes.enum";
 import { ApiError } from "../errors/api.error";
-import { IUser, IUserUpdateDTO } from "../interfaces/user.interface";
+import { IUser } from "../interfaces/user.interface";
 import { userRepository } from "../repositories/user.repository";
 
 class UserService {
@@ -18,7 +18,7 @@ class UserService {
         return user;
     }
 
-    public async updateById(userId: string, updateData: IUserUpdateDTO): Promise<IUser> {
+    public async updateById(userId: string, updateData: Partial<IUser>): Promise<IUser> {
         const user = await userRepository.getById(userId);
 
         if (!user) {

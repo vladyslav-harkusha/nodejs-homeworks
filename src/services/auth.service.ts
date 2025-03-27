@@ -61,6 +61,12 @@ class AuthService {
 
         return { user, tokens };
     }
+
+    public async activate(token: string): Promise<IUser> {
+        const { userId } = tokenService.verifyToken(token, ActionTokenTypeEnum.ACTIVATE);
+
+        return await userService.updateById(userId, { isActive: true });
+    }
 }
 
 export const authService = new AuthService();
