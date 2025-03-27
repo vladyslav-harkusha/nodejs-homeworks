@@ -59,6 +59,10 @@ class UserService {
     public unBlockUser(userId: string): Promise<IUser> {
         return userRepository.unbBlockUser(userId);
     }
+
+    public getByEmail(email: string): Promise<IUser> {
+        return userRepository.getByEmail(email);
+    }
 }
 
 export const userService = new UserService();
