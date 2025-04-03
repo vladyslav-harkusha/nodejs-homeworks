@@ -21,7 +21,7 @@ const authService = {
         return me;
     },
 
-    setTokens({ accessToken, refreshToken }: ITokens): void {
+    setTokens({ tokens: { accessToken, refreshToken } }: ITokens): void {
         localStorage.setItem(_accessToken, accessToken);
         localStorage.setItem(_refreshToken, refreshToken);
     },
