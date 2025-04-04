@@ -1,0 +1,21 @@
+.Header {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    background-color: teal;
+    height: 50px;
+}
+
+.Header a {
+    text-decoration: none;
+    color: wheat;
+    font-size: 25px;
+    padding: 0 10px;
+}
+
+.user {
+    color: darkorange;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px;
+}

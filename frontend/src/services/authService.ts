@@ -21,9 +21,23 @@ const authService = {
         return me;
     },
 
+    async refresh(): Promise<void> {
+        const refreshTok = this.getRefreshToken();
+
+        if (refreshTok) {
+            const { data } = await apiService.post<ITokens>(urls.auth.refresh, { refreshToken: refreshTok });
+            this.setTokens(data);
+        }
+    },
+
     setTokens({ tokens: { accessToken, refreshToken } }: ITokens): void {
         localStorage.setItem(_accessToken, accessToken);
         localStorage.setItem(_refreshToken, refreshToken);
+    },
+
+    deleteTokens(): void {
+        localStorage.removeItem(_accessToken);
+        localStorage.removeItem(_refreshToken);
     },
 
     me():IRes<IUser> {
