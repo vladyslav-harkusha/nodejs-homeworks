@@ -1,5 +1,5 @@
 import { IRes } from "../types/respType";
-import { IPizza } from "../interfaces/IPizza";
+import { IPizza, IPizzaDTO } from "../interfaces/IPizza";
 import { apiService } from "./apiService";
 import { urls } from "../constants/urls";
 
@@ -8,7 +8,7 @@ const pizzaService = {
         return apiService.get(urls.pizzas)
     },
 
-    create(data: IPizza): IRes<IPizza> {
+    create(data: IPizzaDTO): IRes<IPizza> {
         return apiService.post<IPizza>(urls.pizzas, data);
     }
 };

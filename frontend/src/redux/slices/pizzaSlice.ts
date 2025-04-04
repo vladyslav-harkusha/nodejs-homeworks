@@ -1,13 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IPizza } from "../../interfaces/IPizza";
+import { IPizza, IPizzaDTO } from "../../interfaces/IPizza";
 import { pizzaService } from "../../services/pizzaService";
 
 interface IState {
     pizzas: IPizza[];
+    trigger: boolean;
 }
 
 const initialState: IState = {
     pizzas: [],
+    trigger: null,
 }
 
 const getAll = createAsyncThunk<IPizza[], void>(
@@ -22,7 +24,7 @@ const getAll = createAsyncThunk<IPizza[], void>(
     }
 );
 
-const create = createAsyncThunk<IPizza, { pizza :IPizza }>(
+const create = createAsyncThunk<IPizza, { pizza :IPizzaDTO }>(
     'pizzaSlice/create',
     async ({ pizza }, { rejectWithValue }) => {
         try {
@@ -42,6 +44,9 @@ const pizzaSlice =  createSlice({
         builder
             .addCase(getAll.fulfilled, (state, action) => {
                 state.pizzas = action.payload;
+            })
+            .addCase(create.fulfilled, (state, action) => {
+                state.trigger = !state.trigger;
             })
 });
 

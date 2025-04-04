@@ -1,9 +1,12 @@
-import React from "react";
+import { Pizzas } from "../components/PizzasContainer/Pizzas";
+import { PizzaCreate } from "../components/PizzasContainer/PizzaCreate";
 
 const PizzasPage = () => {
     return (
         <div>
-            PizzasPage
+            <PizzaCreate />
+            <hr/>
+            <Pizzas />
         </div>
     );
 };

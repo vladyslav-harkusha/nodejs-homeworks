@@ -49,7 +49,7 @@ class AuthController {
             const newTokens = tokenService.generateTokens({ userId, role });
             await tokenRepository.create({ ...newTokens, _userId: userId });
 
-            res.status(StatusCodesEnum.OK).json(newTokens);
+            res.status(StatusCodesEnum.OK).json({ tokens: newTokens });
         } catch (e) {
             next(e);
         }
