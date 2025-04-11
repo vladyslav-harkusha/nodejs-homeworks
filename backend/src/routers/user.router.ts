@@ -38,8 +38,9 @@ router.patch(
 
 router.patch(
     "/upload-avatar/:id",
-    commonMiddleware.isIdValid("id"),
+    authMiddleware.checkAccessToken,
     upload.single("avatar"),
+    commonMiddleware.isFileExists(),
     userController.uploadAvatar,
 );
 
