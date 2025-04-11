@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 
@@ -11,6 +12,7 @@ import { apiRouter } from "./routers/api.router";
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: ["http://localhost:3000"] }));
 
 app.use("/", apiRouter);
 
