@@ -17,7 +17,7 @@ const getAll = createAsyncThunk<IPizza[], void>(
     async (_, { rejectWithValue }) => {
         try {
             const { data } = await pizzaService.getAll();
-            return data;
+            return data.data;
         } catch (e) {
             return rejectWithValue(e);
         }
